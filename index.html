@@ -220,7 +220,7 @@ control_of_contactForm.addEventListener("submit", function(e){
 
   let response = { name, email, message, date };
 
-fetch("https://portfolio-backend-hwby.onrender.com", {
+fetch("https://portfolio-backend-hwby.onrender.com/contact", {
 
   method: "POST",
 
@@ -295,7 +295,7 @@ async function showUserResponses(){
   let username = document.getElementById("usrname").value;
   let password = document.getElementById("pswd").value;
 
-  let res = await fetch("https://portfolio-backend-hwby.onrender.com", {
+  let res = await fetch("https://portfolio-backend-hwby.onrender.com/feedbacks", {
 
     method: "POST",
 
