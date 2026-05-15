@@ -208,15 +208,38 @@ control_of_contactForm.addEventListener("submit", function(e){
 
   let date = new Date().toLocaleString();
 
+  // let response = { name, email, message, date };
+
+  // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
+  // dummy_database.push(response);
+
+  // localStorage.setItem('tempDb', JSON.stringify(dummy_database));
+
+  // alert("Your response is recorded!");
+  // control_of_contactForm.reset();
+
   let response = { name, email, message, date };
 
-  let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
-  dummy_database.push(response);
+fetch("https://portfolio-backend-hwby.onrender.com", {
 
-  localStorage.setItem('tempDb', JSON.stringify(dummy_database));
+  method: "POST",
+
+  headers: {
+    "Content-Type": "application/json"
+  },
+
+  body: JSON.stringify(response)
+
+})
+.then(res => res.json())
+.then(data => {
 
   alert("Your response is recorded!");
+
   control_of_contactForm.reset();
+
+})
+.catch(err => console.log(err));
 });
 
 // ✅ Show Stored Responses
@@ -224,7 +247,30 @@ function showUserResponses(){
   let control_of_userResponses = document.getElementById("user-messages");
   control_of_userResponses.innerHTML = "";
 
-  let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
+  // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
+
+  fetch("https://portfolio-backend-hwby.onrender.com")
+.then(res => res.json())
+.then(dummy_database => {
+
+  dummy_database.forEach(responses => {
+
+    let div = document.createElement('div');
+
+    div.innerHTML = `
+      <p>Name: ${responses.name}</p>
+      <p>Email: ${responses.email}</p>
+      <p>Message: ${responses.message}</p>
+      <p>Date: ${responses.date}</p>
+      <hr>
+    `;
+
+    control_of_userResponses.appendChild(div);
+
+  });
+
+})
+.catch(err => console.log(err));
 
   dummy_database.forEach(responses => {
     let div = document.createElement('div');
