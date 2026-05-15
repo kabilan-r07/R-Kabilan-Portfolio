@@ -243,17 +243,76 @@ fetch("https://portfolio-backend-hwby.onrender.com", {
 });
 
 // ✅ Show Stored Responses
-function showUserResponses(){
+// function showUserResponses(){
+//   let control_of_userResponses = document.getElementById("user-messages");
+//   control_of_userResponses.innerHTML = "";
+
+//   // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
+
+//   fetch("https://portfolio-backend-hwby.onrender.com")
+// .then(res => res.json())
+// .then(dummy_database => {
+
+//   dummy_database.forEach(responses => {
+
+//     let div = document.createElement('div');
+
+//     div.innerHTML = `
+//       <p>Name: ${responses.name}</p>
+//       <p>Email: ${responses.email}</p>
+//       <p>Message: ${responses.message}</p>
+//       <p>Date: ${responses.date}</p>
+//       <hr>
+//     `;
+
+//     control_of_userResponses.appendChild(div);
+
+//   });
+
+// })
+// .catch(err => console.log(err));
+
+//   dummy_database.forEach(responses => {
+//     let div = document.createElement('div');
+//     div.innerHTML = `
+//       <p>Name: ${responses.name}</p>
+//       <p>Email: ${responses.email}</p>
+//       <p>Message: ${responses.message}</p>
+//       <p>Date: ${responses.date}</p>
+//       <hr>
+//     `;
+//     control_of_userResponses.appendChild(div);
+//   });
+// }
+
+// });
+async function showUserResponses(){
+
   let control_of_userResponses = document.getElementById("user-messages");
+
   control_of_userResponses.innerHTML = "";
 
-  // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
+  let username = document.getElementById("usrname").value;
+  let password = document.getElementById("pswd").value;
 
-  fetch("https://portfolio-backend-hwby.onrender.com")
-.then(res => res.json())
-.then(dummy_database => {
+  let res = await fetch("https://portfolio-backend-hwby.onrender.com", {
 
-  dummy_database.forEach(responses => {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+      username,
+      password
+    })
+
+  });
+
+  let data = await res.json();
+
+  data.forEach(responses => {
 
     let div = document.createElement('div');
 
@@ -269,23 +328,7 @@ function showUserResponses(){
 
   });
 
-})
-.catch(err => console.log(err));
-
-  dummy_database.forEach(responses => {
-    let div = document.createElement('div');
-    div.innerHTML = `
-      <p>Name: ${responses.name}</p>
-      <p>Email: ${responses.email}</p>
-      <p>Message: ${responses.message}</p>
-      <p>Date: ${responses.date}</p>
-      <hr>
-    `;
-    control_of_userResponses.appendChild(div);
-  });
 }
-
-});
 </script>
     
     <header> <!-- Header is JUST a container tag-->
