@@ -186,7 +186,7 @@ control_of_admin_form.addEventListener("submit", function(e){
   }
 });
 
-// ✅ Contact Form + Email Validation
+
 control_of_contactForm.addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -196,7 +196,7 @@ control_of_contactForm.addEventListener("submit", function(e){
 
   let error = document.getElementById("email-error");
 
-  // 🔥 Email Regex
+  
   let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailPattern.test(email)) {
@@ -208,15 +208,7 @@ control_of_contactForm.addEventListener("submit", function(e){
 
   let date = new Date().toLocaleString();
 
-  // let response = { name, email, message, date };
-
-  // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
-  // dummy_database.push(response);
-
-  // localStorage.setItem('tempDb', JSON.stringify(dummy_database));
-
-  // alert("Your response is recorded!");
-  // control_of_contactForm.reset();
+  
 
   let response = { name, email, message, date };
 
@@ -242,50 +234,8 @@ fetch("https://portfolio-backend-hwby.onrender.com/contact", {
 .catch(err => console.log(err));
 });
 
-// ✅ Show Stored Responses
-// function showUserResponses(){
-//   let control_of_userResponses = document.getElementById("user-messages");
-//   control_of_userResponses.innerHTML = "";
 
-//   // let dummy_database = JSON.parse(localStorage.getItem('tempDb')) || [];
 
-//   fetch("https://portfolio-backend-hwby.onrender.com")
-// .then(res => res.json())
-// .then(dummy_database => {
-
-//   dummy_database.forEach(responses => {
-
-//     let div = document.createElement('div');
-
-//     div.innerHTML = `
-//       <p>Name: ${responses.name}</p>
-//       <p>Email: ${responses.email}</p>
-//       <p>Message: ${responses.message}</p>
-//       <p>Date: ${responses.date}</p>
-//       <hr>
-//     `;
-
-//     control_of_userResponses.appendChild(div);
-
-//   });
-
-// })
-// .catch(err => console.log(err));
-
-//   dummy_database.forEach(responses => {
-//     let div = document.createElement('div');
-//     div.innerHTML = `
-//       <p>Name: ${responses.name}</p>
-//       <p>Email: ${responses.email}</p>
-//       <p>Message: ${responses.message}</p>
-//       <p>Date: ${responses.date}</p>
-//       <hr>
-//     `;
-//     control_of_userResponses.appendChild(div);
-//   });
-// }
-
-// });
 async function showUserResponses(){
 
   let control_of_userResponses = document.getElementById("user-messages");
@@ -413,11 +363,7 @@ This portfolio showcases my skills, projects, and achievements. Thank you for vi
           <p>  </p>
         </div>
         
-        <!-- <div class="block-item">
-          <h3> EDUCATION DETAILS 3 </h3>
-          <p>  </p>
-          <p>  </p>
-        </div> -->
+        
       </section>
       <section class="blocks" id="Skills"> <!-- section is a CONTAINER tag-->
         <h2 id="skills1">Skills </h2>
@@ -503,25 +449,14 @@ This portfolio showcases my skills, projects, and achievements. Thank you for vi
       </section>
       
       <section class="blocks" id="contact-me">
-        <h2> Contact Me </h2>
-        
-        <form id="contact-form">
-          <div>
-          <label> Name: </label>
-          <input type="text" id="name">
-          </div>
-          
-          <div>
-          <label> Email: </label>
-          <input type="text" id="email">
-          <p id="email-error" style="color:red; font-size:14px;"></p>
-          <label> Message: </label>
-          <input type="text" id="msg">
-          </div>
-          
-          <button type="submit"> Send </button>
-        </form>
-      </section>
+    <h2>Contact Me</h2>
+
+    <div class="contact-details">
+        <p><strong>Name:</strong> R Kabilan</p>
+        <p><strong>Email:</strong> kabilanramachandiran2007@gmail.com</p>
+        <p><strong>Mobile Number:</strong> +91 96778 86536</p>
+    </div>
+</section>
         
         <section class="blocks" id="admin-login">
         <h2> Admin Login </h2>
