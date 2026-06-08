@@ -15,7 +15,7 @@ body {
 
 /* Header */
 header {
-  background: linear-gradient(120deg,#667eea 0%, #DB4495 50%, #FFFF00 100%);
+  background: linear-gradient(120deg,#667eea 0%, #DB4495 50%, #FFFF00 100%); 
   text-align: center;
   padding: 70px 20px;
   border-radius: 20px;
@@ -147,141 +147,16 @@ button:hover {
   background: #4b5fd1;
 }
 
-/* Admin Sections */
-#admin-login,
-#user-responses {
-  display: none;
+strong{
+  font-size: 20;
+  
+}
+b{
+  color:#667eea;
 }
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
 
-let cntrl_of_admin_login_section = document.getElementById("admin-login");
-let control_of_admin_form = document.getElementById("admin-form");
-let control_of_user_responses = document.getElementById("user-responses");
-let control_of_contactForm = document.getElementById("contact-form");
-
-window.showAdminLogin = function(){
-  cntrl_of_admin_login_section.style.display = "block";
-};
-
-// ✅ Admin Login
-control_of_admin_form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  let storedUsername = "admin";
-  let storedPassword = "1234";
-
-  let username = document.getElementById("usrname").value;
-  let password = document.getElementById("pswd").value;
-
-  if (username === storedUsername && password === storedPassword) {
-    alert("Access granted");
-    cntrl_of_admin_login_section.style.display = "none";
-    control_of_user_responses.style.display = "block";
-    showUserResponses();
-  } else {
-    alert("Access denied!");
-  }
-});
-
-
-control_of_contactForm.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let message = document.getElementById("msg").value;
-
-  let error = document.getElementById("email-error");
-
-  
-  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailPattern.test(email)) {
-    error.textContent = "Please enter a valid email address!";
-    return;
-  } else {
-    error.textContent = "";
-  }
-
-  let date = new Date().toLocaleString();
-
-  
-
-  let response = { name, email, message, date };
-
-fetch("https://portfolio-backend-hwby.onrender.com/contact", {
-
-  method: "POST",
-
-  headers: {
-    "Content-Type": "application/json"
-  },
-
-  body: JSON.stringify(response)
-
-})
-.then(res => res.json())
-.then(data => {
-
-  alert("Your response is recorded!");
-
-  control_of_contactForm.reset();
-
-})
-.catch(err => console.log(err));
-});
-
-
-
-async function showUserResponses(){
-
-  let control_of_userResponses = document.getElementById("user-messages");
-
-  control_of_userResponses.innerHTML = "";
-
-  let username = document.getElementById("usrname").value;
-  let password = document.getElementById("pswd").value;
-
-  let res = await fetch("https://portfolio-backend-hwby.onrender.com/feedbacks", {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      username,
-      password
-    })
-
-  });
-
-  let data = await res.json();
-
-  data.forEach(responses => {
-
-    let div = document.createElement('div');
-
-    div.innerHTML = `
-      <p>Name: ${responses.name}</p>
-      <p>Email: ${responses.email}</p>
-      <p>Message: ${responses.message}</p>
-      <p>Date: ${responses.date}</p>
-      <hr>
-    `;
-
-    control_of_userResponses.appendChild(div);
-
-  });
-
-}
-
-});
-</script>
     
     <header> <!-- Header is JUST a container tag-->
       <h2> Kabilan R</h2>
@@ -298,7 +173,7 @@ async function showUserResponses(){
           <li><a href="#Skills">Skills</a></li>
           <li> <a href="#projects"> Projects </a> </li>
           <li> <a href="#contact-me"> Contact me </a> </li>
-          <li> <a href="#admin-login" onClick="showAdminLogin()"> Admin Login </a> </li>
+
         </ul>
       </nav>
       <section class="blocks" id="Home"> <!-- section is a CONTAINER tag-->
@@ -440,6 +315,9 @@ This portfolio showcases my skills, projects, and achievements. Thank you for vi
 • Designed responsive UI with inline CSS styling.<br>
 • Included contact information such as name, company, phone number, email, and bio.<br>
 • Added real-time search functionality for filtering contacts easily. <br></p>
+          
+        </div>
+        <div class="block-item">
           <h3> Technologies Used </h3>
           <p> • React.js<br>
 • JavaScript<br>
@@ -451,38 +329,14 @@ This portfolio showcases my skills, projects, and achievements. Thank you for vi
       <section class="blocks" id="contact-me">
     <h2>Contact Me</h2>
 
-    <div class="contact-details">
-        <p><strong>Name:</strong> R Kabilan</p>
-        <p><strong>Email:</strong> kabilanramachandiran2007@gmail.com</p>
-        <p><strong>Mobile Number:</strong> +91 96778 86536</p>
+    <div class="block-item">
+        <p><strong>Name:</strong> <i><b>Kabilan R</b></i></p>
+        <p><strong>Email:</strong><i><b> kabilanramachandiran2007@gmail.com</b></i></p>
+        <p><strong>Mobile Number:</strong> <b>+91 96778 86536</b></p>
     </div>
 </section>
         
-        <section class="blocks" id="admin-login">
-        <h2> Admin Login </h2>
-        
-        <form id="admin-form">
-          <div>
-          <label> Username: </label>
-          <input type="text" id="usrname">
-          </div>
-          
-          <div>
-          <label> Password: </label>
-          <input type="password" id="pswd">
-          
-          <button type="submit"> Submit </button>
-        </form>
-      </section>
-          
-      <section class="blocks" id="user-responses">
-        <h2> User Responses </h2>
-        <div id="user-messages"> <!-- This will hold all the messages that we fetch from the database-->
-          
-          </div>
-        
-          </section>
-       
+              
     </main>
   </body>
 </html>
